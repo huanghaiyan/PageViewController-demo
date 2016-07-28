@@ -103,7 +103,6 @@
         mTableView.delegate = self;
         mTableView.dataSource = self;
         mTableView.backgroundColor = GLOGBALCOLOR;
-        //mTableView.separatorStyle = UITableViewCellAccessoryNone;
         [mainScrollView addSubview:mTableView];
     }
 }
@@ -134,12 +133,33 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    UITableViewCell *cell;
+    if (tableView.tag == 100) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        cell.textLabel.text = @"hahha";
+        
+    }else if(tableView.tag == 101){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        cell.textLabel.text = @"ertert";
+    }else if(tableView.tag == 102){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        cell.textLabel.text = @"ewtyy";
+    }else if(tableView.tag == 103){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        cell.textLabel.text = @"EWAEFAEFG";
     }
-    cell.textLabel.text = @"hahha";
     
     return cell;
 }
@@ -190,7 +210,7 @@
         btn.selected=YES;
         [self.view endEditing:YES];
         CGRect rect = mainScrollView.frame;
-        rect.origin.x = mainScrollView.frame.size.width;
+        rect.origin.x = mainScrollView.frame.size.width*(btn.tag-1);
         rect.origin.y = 0;
         [mainScrollView scrollRectToVisible:rect animated:YES];
         [colorview setContentOffset:CGPointMake(kWIDTH*(btn.tag -1),0)];
